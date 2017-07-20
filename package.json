@@ -1,0 +1,42 @@
+{
+  "name": "grunt-twig2html",
+  "description": "A static site compiler for grunt based on twig templates",
+  "version": "0.1.0",
+  "homepage": "https://github.com/toptalo/twig2html",
+  "author": {
+    "name": "Виктор Виктор",
+    "email": "spam.vitek@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/toptalo/twig2html.git"
+  },
+  "bugs": {
+    "url": "https://github.com/toptalo/twig2html/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/toptalo/twig2html/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt": "^1.0.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "extend": "^3.0.1",
+    "twig": "^1.10.5"
+  }
+}

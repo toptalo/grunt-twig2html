@@ -78,25 +78,23 @@ A string that is inserted between each compiled template when concatenating temp
 ```js
 grunt.initConfig({
     twig2html: {
-        twig2html: {
+        options: {
+            context: {}, // task specific context object hash
+            globals: 'path/to/globals.json'
+        },
+        target: {
             options: {
-                context: {}, // task specific context object hash
-                globals: 'path/to/globals.json'
+                context: {} // target specific context object hash
             },
-            target: {
-                options: {
-                    context: {} // target specific context object hash
-                },
-                files: [
-                    {
-                        expand: true,
-                        cwd: 'path/to/pages',
-                        src: ['**/*.twig'],
-                        dest: 'path/to/dest/',
-                        ext: '.html'
-                    }
-                ]
-            }
+            files: [
+                {
+                    expand: true,
+                    cwd: 'path/to/pages',
+                    src: ['**/*.twig'],
+                    dest: 'path/to/dest/',
+                    ext: '.html'
+                }
+            ]
         }
     }
 });
@@ -108,11 +106,12 @@ Template context extends in this order:
 * `options.context` if provided
 * `target.options.context` if provided
 * `options.globals` or `target.options.globals` if provided
-* template JSON context files, if provided (stored in template path, with same name,
+* template JSON context files (stored in template path, with same name,
 example: `/templates/index.json` for `/templates/index.twig`) if provided
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.1.1: Edit README
 * 0.1.0: Defined twig2html task.

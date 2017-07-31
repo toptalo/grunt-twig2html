@@ -1,7 +1,7 @@
 {
   "name": "grunt-twig2html",
   "description": "A static site compiler for grunt based on twig templates",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/toptalo/grunt-twig2html",
   "author": {
     "name": "Виктор Виктор",

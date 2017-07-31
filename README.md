@@ -103,9 +103,8 @@ grunt.initConfig({
 #### Context hierarchy
 
 Template context extends in this order:
-* `options.context` if provided
-* `target.options.context` if provided
 * `options.globals` or `target.options.globals` if provided
+* `options.context` or `target.options.context` if provided
 * template JSON context files (stored in template path, with same name,
 example: `/templates/index.json` for `/templates/index.twig`) if provided
 
@@ -113,5 +112,6 @@ example: `/templates/index.json` for `/templates/index.twig`) if provided
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.2.0: Fix context hierarchy
 * 0.1.1: Edit README
 * 0.1.0: Defined twig2html task.

@@ -82,20 +82,22 @@ module.exports = function (grunt) {
                 var templateFile = filepath.substr(filepath.lastIndexOf('/') + 1);
                 var templateName = templateFile.substr(0, templateFile.lastIndexOf('.')) || templateFile;
 
-                var context = extend({}, options.context);
+                var context = {};
 
                 if (options.globals && typeof options.globals === 'string' && grunt.file.exists(options.globals)) {
                     try {
-                        context.globals = grunt.file.readJSON(options.globals);
+                        context = extend(context, grunt.file.readJSON(options.globals));
                     } catch (error) {
                         grunt.fail.fatal(error);
                     }
                 }
 
+                context = extend(context, options.context);
+
                 var templateContextFile = templatePath + templateName + '.json';
 
                 if (grunt.file.exists(templateContextFile)) {
-                    context.page = grunt.file.readJSON(templateContextFile);
+                    context = extend(context, grunt.file.readJSON(templateContextFile));
                 }
 
                 return Twig.twig({

@@ -10,11 +10,10 @@
 
 var Twig = require('twig');
 var extend = require('extend');
+var chalk = require('chalk');
 
-// http://stackoverflow.com/questions/5999998/how-can-i-check-if-a-javascript-variable-is-function-type
-function isFunction (functionToCheck) {
-    var getType = {};
-    return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+function isFunction (variableToCheck) {
+    return Object.prototype.toString.call(variableToCheck) === '[object Function]';
 }
 
 function isArray (variableToCheck) {
@@ -39,8 +38,8 @@ module.exports = function (grunt) {
 
         // extending Twig
 
-// validate type of extensions
-        if (false === isArray(options.extensions)) {
+        // validate type of extensions
+        if (!isArray(options.extensions)) {
             grunt.fail.fatal("extensions has to be an array of functions!");
         }
 
@@ -99,20 +98,22 @@ module.exports = function (grunt) {
                 if (grunt.file.exists(templateContextFile)) {
                     context = extend(context, grunt.file.readJSON(templateContextFile));
                 }
-
-                return Twig.twig({
-                    cache: false,
-                    async: false,
-                    path: filepath
-                }).render(context);
+                try {
+                    return Twig.twig({
+                        cache: false,
+                        async: false,
+                        path: filepath
+                    }).render(context);
+                } catch (error) {
+                    grunt.fail.fatal(error);
+                }
             }).join(options.separator);
 
             // Write the destination file.
             grunt.file.write(f.dest, html);
 
             // Print a success message.
-            grunt.log.writeln('File "' + f.dest + '" created.');
+            grunt.log.ok('File "' + chalk.green(f.dest) + '" created.');
         });
     });
-
 };

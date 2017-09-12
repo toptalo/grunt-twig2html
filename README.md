@@ -112,6 +112,7 @@ example: `/templates/index.json` for `/templates/index.twig`) if provided
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+* 0.2.2: Update chalk to 2.1.0. Clear package dir. Fix console output style
 * 0.2.1: Add try catch to render. Add colorized log output. Rename git repository
 * 0.2.0: Fix context hierarchy
 * 0.1.1: Edit README

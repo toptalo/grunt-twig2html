@@ -109,7 +109,11 @@ Template context extends in this order:
 example: `/templates/index.json` for `/templates/index.twig`) if provided
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal style guide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+
+## Sponsored by
+
+[![DesignDepot](https://designdepot.ru/static/core/img/logo.png)](https://designdepot.ru/?utm_source=web&utm_medium=npm&utm_campaign=grunt-twig2html)
 
 ## Release History
 * 0.2.2: Update chalk to 2.1.0. Clear package dir. Fix console output style

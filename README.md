@@ -116,8 +116,4 @@ In lieu of a formal style guide, take care to maintain the existing coding style
 [![DesignDepot](https://designdepot.ru/static/core/img/logo.png)](https://designdepot.ru/?utm_source=web&utm_medium=npm&utm_campaign=grunt-twig2html)
 
 ## Release History
-* 0.2.2: Update chalk to 2.1.0. Clear package dir. Fix console output style
-* 0.2.1: Add try catch to render. Add colorized log output. Rename git repository
-* 0.2.0: Fix context hierarchy
-* 0.1.1: Edit README
-* 0.1.0: Defined twig2html task.
+See the [CHANGELOG](CHANGELOG.md).

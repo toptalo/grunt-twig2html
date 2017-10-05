@@ -2,18 +2,10 @@
   "name": "grunt-twig2html",
   "description": "A static site compiler for grunt based on twig templates",
   "version": "0.2.2",
-  "keywords": [
-    "gruntplugin",
-    "templating",
-    "twig",
-    "html",
-    "django"
-  ],
   "author": {
     "name": "Виктор Виктор",
     "email": "spam.vitek@gmail.com"
   },
-  "homepage": "https://github.com/toptalo/grunt-twig2html",
   "repository": {
     "type": "git",
     "url": "git://github.com/toptalo/grunt-twig2html.git"
@@ -27,28 +19,35 @@
       "url": "https://github.com/toptalo/grunt-twig2html/blob/master/LICENSE"
     }
   ],
-  "peerDependencies": {
-    "grunt-cli": ">=1.0.0"
+  "engines": {
+    "node": ">=4.0.0"
   },
-  "devDependencies": {
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-contrib-nodeunit": "^1.0.0",
-    "grunt": "^1.0.1"
+  "main": "tasks/twig2html.js",
+  "scripts": {
+    "test": "grunt test"
   },
   "dependencies": {
     "chalk": "^2.1.0",
     "extend": "^3.0.1",
     "twig": "^1.10.5"
   },
-  "engines": {
-    "node": ">=4.0.0"
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-nodeunit": "^1.0.0"
   },
-  "scripts": {
-    "test": "grunt test"
+  "peerDependencies": {
+    "grunt-cli": ">=1.0.0"
   },
   "files": [
-    "tasks/"
+    "tasks"
   ],
-  "main": "tasks/twig2html.js"
+  "keywords": [
+    "gruntplugin",
+    "templating",
+    "twig",
+    "html",
+    "django"
+  ]
 }

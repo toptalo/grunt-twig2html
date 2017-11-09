@@ -1,7 +1,7 @@
 {
   "name": "grunt-twig2html",
   "description": "A static site compiler for grunt based on twig templates",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "author": {
     "name": "Виктор Виктор",
     "email": "spam.vitek@gmail.com"

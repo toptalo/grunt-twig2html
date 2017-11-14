@@ -8,21 +8,15 @@
 
 'use strict';
 
-var Twig = require('twig');
-var extend = require('extend');
-var chalk = require('chalk');
+const Twig = require('twig');
+const extend = require('extend');
+const chalk = require('chalk');
+const eachAsync = require('each-async');
 
-function isFunction (variableToCheck) {
-    return Object.prototype.toString.call(variableToCheck) === '[object Function]';
-}
-
-function isArray (variableToCheck) {
-    return Object.prototype.toString.call(variableToCheck) === '[object Array]';
-}
-
-module.exports = function (grunt) {
+module.exports = grunt => {
     grunt.registerMultiTask('twig2html', 'Render twig templates to html files', function () {
-        var options = this.options({
+        const done = this.async();
+        const options = this.options({
             globals: '',
             extensions: [],
             functions: {},
@@ -31,7 +25,7 @@ module.exports = function (grunt) {
             separator: '\n'
         });
 
-        if (!isArray(options.extensions)) {
+        if (!Array.isArray(options.extensions)) {
             grunt.fail.fatal("extensions has to be an array of functions!");
         }
 
@@ -39,23 +33,23 @@ module.exports = function (grunt) {
             Twig.extend(fn);
         });
 
-        Object.keys(options.functions).forEach(function (name) {
-            var fn = options.functions[name];
-            if (!isFunction(fn)) {
-                grunt.fail.fatal('"' + name + '" needs to be a function!');
+        Object.keys(options.functions).forEach(name => {
+            let fn = options.functions[name];
+            if (typeof fn !== 'function') {
+                grunt.fail.fatal(`${name} needs to be a function!`);
             }
             Twig.extendFunction(name, fn);
-        }.bind(this));
+        });
 
-        Object.keys(options.filters).forEach(function (name) {
-            var fn = options.filters[name];
-            if (!isFunction(fn)) {
-                grunt.fail.fatal('"' + name + '" needs to be a function!');
+        Object.keys(options.filters).forEach(name => {
+            let fn = options.filters[name];
+            if (typeof fn !== 'function') {
+                grunt.fail.fatal(`${name} needs to be a function!`);
             }
             Twig.extendFilter(name, fn);
-        }.bind(this));
+        });
 
-        var genericContext = {};
+        let genericContext = {};
         if (options.globals && typeof options.globals === 'string' && grunt.file.exists(options.globals)) {
             try {
                 genericContext = extend(genericContext, grunt.file.readJSON(options.globals));
@@ -66,22 +60,22 @@ module.exports = function (grunt) {
 
         genericContext = extend(genericContext, options.context);
 
-        this.files.forEach(function (f) {
-            var html = f.src.filter(function (filepath) {
+        eachAsync(this.files, (file, i, next) => {
+            let html = file.src.filter(function (filepath) {
                 if (!grunt.file.exists(filepath)) {
-                    grunt.log.warn('Source file "' + filepath + '" not found.');
+                    grunt.log.warn(`Source file ${filepath} not found.`);
                     return false;
                 } else {
                     return true;
                 }
-            }).map(function (filepath) {
-                var templatePath = filepath.substr(0, filepath.lastIndexOf('/') + 1);
-                var templateFile = filepath.substr(filepath.lastIndexOf('/') + 1);
-                var templateName = templateFile.substr(0, templateFile.lastIndexOf('.')) || templateFile;
+            }).map(filePath => {
+                let templatePath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+                let templateFile = filePath.substr(filePath.lastIndexOf('/') + 1);
+                let templateName = templateFile.substr(0, templateFile.lastIndexOf('.')) || templateFile;
 
-                var templateContextFile = templatePath + templateName + '.json';
+                let templateContextFile = `${templatePath}${templateName}.json`;
 
-                var context = genericContext;
+                let context = genericContext;
 
                 if (grunt.file.exists(templateContextFile)) {
                     context = extend(genericContext, grunt.file.readJSON(templateContextFile));
@@ -90,16 +84,22 @@ module.exports = function (grunt) {
                     return Twig.twig({
                         cache: false,
                         async: false,
-                        path: filepath
+                        path: filePath
                     }).render(context);
                 } catch (error) {
                     grunt.fail.fatal(error);
                 }
             }).join(options.separator);
 
-            grunt.file.write(f.dest, html);
+            grunt.log.ok(`File ${chalk.cyan(file.dest)} created.`);
+            grunt.file.write(file.dest, html);
+            next();
+        }, error => {
+            if (error) {
+                grunt.fail.fatal(error);
+            }
 
-            grunt.log.ok('File ' + chalk.cyan(f.dest) + ' created.');
+            done();
         });
     });
 };

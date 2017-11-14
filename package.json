@@ -1,53 +1,50 @@
 {
   "name": "grunt-twig2html",
-  "description": "A static site compiler for grunt based on twig templates",
   "version": "0.2.4",
-  "author": {
-    "name": "Виктор Виктор",
-    "email": "spam.vitek@gmail.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/toptalo/grunt-twig2html.git"
-  },
-  "bugs": {
-    "url": "https://github.com/toptalo/grunt-twig2html/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/toptalo/grunt-twig2html/blob/master/LICENSE"
-    }
-  ],
-  "engines": {
-    "node": ">=4.0.0"
-  },
-  "main": "tasks/twig2html.js",
-  "scripts": {
-    "test": "grunt test"
-  },
-  "dependencies": {
-    "chalk": "^2.3.0",
-    "extend": "^3.0.1",
-    "twig": "^1.10.5"
-  },
-  "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-clean": "^1.1.0",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-nodeunit": "^1.0.0"
-  },
-  "peerDependencies": {
-    "grunt-cli": ">=1.0.0"
-  },
-  "files": [
-    "tasks"
-  ],
+  "description": "A static site compiler for grunt based on twig templates",
   "keywords": [
     "gruntplugin",
     "templating",
     "twig",
     "html",
     "django"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/toptalo/grunt-twig2html/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Виктор Виктор",
+    "email": "spam.vitek@gmail.com"
+  },
+  "files": [
+    "tasks"
+  ],
+  "main": "tasks/twig2html.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/toptalo/grunt-twig2html.git"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "each-async": "^1.1.1",
+    "extend": "^3.0.1",
+    "twig": "^1.10.5"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-nodeunit": "^1.0.0"
+  },
+  "peerDependencies": {
+    "grunt-cli": "1.x"
+  },
+  "engines": {
+    "node": ">=4"
+  }
 }

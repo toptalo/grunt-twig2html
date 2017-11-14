@@ -1,5 +1,11 @@
 # Release History
 
+## v0.3.0, 2017-11-14
+* move to ES6
+* add each-async
+
+---
+
 ## v0.2.4, 2017-11-09
 * update `chalk` to 2.3.0
 

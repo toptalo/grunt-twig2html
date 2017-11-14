@@ -33,7 +33,7 @@ module.exports = function (grunt) {
             options: {
                 globals: './test/fixtures/globals.json'
             },
-            target: {
+            index: {
                 options: {
                     context: {
                         year: 2017

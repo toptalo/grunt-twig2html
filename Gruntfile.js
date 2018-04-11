@@ -57,7 +57,7 @@ module.exports = function (grunt) {
                         }
                     },
                     context: {
-                        name: 'Viktor'
+                        name: 'Victor'
                     }
                 },
                 files: [
@@ -104,7 +104,7 @@ module.exports = function (grunt) {
                         }
                     },
                     context: {
-                        name: 'Viktor',
+                        name: 'Victor',
                         phone: '+7 (999) 888-77-66',
                         year: 2017
                     }

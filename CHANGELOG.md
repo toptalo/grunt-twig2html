@@ -1,8 +1,10 @@
 # Release History
 
-## v0.3.0, 2017-11-14
+## v0.3.0, 2018-04-11
 * move to ES6
-* add each-async
+* add promise based async file render
+* update `twig` to 1.11.0
+* update `chalk` to ^2.3.2
 
 ---
 

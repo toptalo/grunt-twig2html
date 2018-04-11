@@ -29,13 +29,12 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "chalk": "^2.3.0",
-    "each-async": "^1.1.1",
+    "chalk": "^2.3.2",
     "extend": "^3.0.1",
-    "twig": "^1.10.5"
+    "twig": "^1.11.0"
   },
   "devDependencies": {
-    "grunt": "^1.0.1",
+    "grunt": "^1.0.2",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.1.0",
     "grunt-contrib-jshint": "^1.1.0",

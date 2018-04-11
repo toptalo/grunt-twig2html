@@ -2,7 +2,7 @@
  * grunt-twig2html
  * https://github.com/toptalo/twig2html
  *
- * Copyright (c) 2017 Виктор Виктор
+ * Copyright (c) 2018 Виктор Виктор
  * Licensed under the MIT license.
  */
 
@@ -11,7 +11,6 @@
 const Twig = require('twig');
 const extend = require('extend');
 const chalk = require('chalk');
-const eachAsync = require('each-async');
 
 module.exports = grunt => {
     grunt.registerMultiTask('twig2html', 'Render twig templates to html files', function () {
@@ -60,46 +59,46 @@ module.exports = grunt => {
 
         genericContext = extend(genericContext, options.context);
 
-        eachAsync(this.files, (file, i, next) => {
-            let html = file.src.filter(function (filepath) {
-                if (!grunt.file.exists(filepath)) {
-                    grunt.log.warn(`Source file ${filepath} not found.`);
-                    return false;
-                } else {
-                    return true;
-                }
-            }).map(filePath => {
-                let templatePath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                let templateFile = filePath.substr(filePath.lastIndexOf('/') + 1);
-                let templateName = templateFile.substr(0, templateFile.lastIndexOf('.')) || templateFile;
+        Promise.all(this.files.map((file) => {
+            return new Promise((resolve, reject) => {
+                let contents = file.src.filter(filePath => {
+                    if (!grunt.file.exists(filePath)) {
+                        grunt.log.warn(`Source file ${filePath} not found.`);
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }).map(filePath => {
+                    let templatePath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+                    let templateFile = filePath.substr(filePath.lastIndexOf('/') + 1);
+                    let templateName = templateFile.substr(0, templateFile.lastIndexOf('.')) || templateFile;
 
-                let templateContextFile = `${templatePath}${templateName}.json`;
+                    let templateContextFile = `${templatePath}${templateName}.json`;
 
-                let context = genericContext;
+                    let context = genericContext;
 
-                if (grunt.file.exists(templateContextFile)) {
-                    context = extend(genericContext, grunt.file.readJSON(templateContextFile));
-                }
-                try {
-                    return Twig.twig({
-                        cache: false,
-                        async: false,
-                        path: filePath
-                    }).render(context);
-                } catch (error) {
-                    grunt.fail.fatal(error);
-                }
-            }).join(options.separator);
+                    if (grunt.file.exists(templateContextFile)) {
+                        context = extend(genericContext, grunt.file.readJSON(templateContextFile));
+                    }
+                    try {
+                        return Twig.twig({
+                            cache: false,
+                            async: false,
+                            path: filePath
+                        }).render(context);
+                    } catch (error) {
+                        reject(error);
+                    }
+                }).join(options.separator);
 
-            grunt.log.ok(`File ${chalk.cyan(file.dest)} created.`);
-            grunt.file.write(file.dest, html);
-            next();
-        }, error => {
-            if (error) {
-                grunt.fail.fatal(error);
-            }
-
+                grunt.log.ok(`File ${chalk.cyan(file.dest)} created.`);
+                grunt.file.write(file.dest, contents);
+                resolve();
+            });
+        })).then(result => {
             done();
+        }).catch(error => {
+            grunt.fail.fatal(error);
         });
     });
 };

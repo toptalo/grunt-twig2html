@@ -12,7 +12,7 @@ const Twig = require('twig');
 const extend = require('extend');
 const chalk = require('chalk');
 
-module.exports = grunt => {
+module.exports = (grunt) => {
     grunt.registerMultiTask('twig2html', 'Render twig templates to html files', function () {
         const done = this.async();
         const options = this.options({
@@ -60,44 +60,51 @@ module.exports = grunt => {
         genericContext = extend(genericContext, options.context);
 
         Promise.all(this.files.map((file) => {
-            return new Promise((resolve, reject) => {
-                let contents = file.src.filter(filePath => {
+            return new Promise((resolveMain, rejectMain) => {
+                Promise.all(file.src.filter((filePath) => {
                     if (!grunt.file.exists(filePath)) {
                         grunt.log.warn(`Source file ${filePath} not found.`);
                         return false;
                     } else {
                         return true;
                     }
-                }).map(filePath => {
-                    let templatePath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-                    let templateFile = filePath.substr(filePath.lastIndexOf('/') + 1);
-                    let templateName = templateFile.substr(0, templateFile.lastIndexOf('.')) || templateFile;
+                }).map((filePath) => {
+                    return new Promise((resolveFile, rejectFile) => {
+                        let templatePath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+                        let templateFile = filePath.substr(filePath.lastIndexOf('/') + 1);
+                        let templateName = templateFile.substr(0, templateFile.lastIndexOf('.')) || templateFile;
+                        let templateContextFile = `${templatePath}${templateName}.json`;
+                        let context = genericContext;
 
-                    let templateContextFile = `${templatePath}${templateName}.json`;
+                        if (grunt.file.exists(templateContextFile)) {
+                            context = extend(genericContext, grunt.file.readJSON(templateContextFile));
+                        }
 
-                    let context = genericContext;
+                        try {
+                            let output = Twig.twig({
+                                cache: false,
+                                async: false,
+                                path: filePath
+                            }).render(context);
 
-                    if (grunt.file.exists(templateContextFile)) {
-                        context = extend(genericContext, grunt.file.readJSON(templateContextFile));
-                    }
-                    try {
-                        return Twig.twig({
-                            cache: false,
-                            async: false,
-                            path: filePath
-                        }).render(context);
-                    } catch (error) {
-                        reject(error);
-                    }
-                }).join(options.separator);
-
-                grunt.log.ok(`File ${chalk.cyan(file.dest)} created.`);
-                grunt.file.write(file.dest, contents);
-                resolve();
+                            resolveFile(output);
+                        } catch (error) {
+                            rejectFile(error);
+                        }
+                    });
+                })).then((result) => {
+                    let contents = result.join(options.separator);
+                    grunt.file.write(file.dest, contents);
+                    grunt.log.ok(`File ${chalk.cyan(file.dest)} created.`);
+                    resolveMain();
+                }).catch((error) => {
+                    rejectMain(error);
+                    grunt.fail.fatal(error);
+                });
             });
-        })).then(result => {
-            done();
-        }).catch(error => {
+        })).then((result) => {
+            done(result);
+        }).catch((error) => {
             grunt.fail.fatal(error);
         });
     });

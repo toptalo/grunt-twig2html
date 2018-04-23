@@ -29,7 +29,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "chalk": "^2.3.2",
+    "chalk": "^2.4.0",
     "extend": "^3.0.1",
     "twig": "^1.11.0"
   },
@@ -44,6 +44,6 @@
     "grunt-cli": "1.x"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   }
 }

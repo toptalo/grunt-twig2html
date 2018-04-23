@@ -1,10 +1,11 @@
 # Release History
 
-## v0.3.0, 2018-04-11
+## v1.0.0, 2018-04-11
+* drop node 4.x support
 * move to ES6
-* add promise based async file render
+* add promise based file render
 * update `twig` to 1.11.0
-* update `chalk` to ^2.3.2
+* update `chalk` to ^2.4.0
 
 ---
 

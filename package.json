@@ -1,6 +1,6 @@
 {
   "name": "grunt-twig2html",
-  "version": "0.2.4",
+  "version": "1.0.0",
   "description": "A static site compiler for grunt based on twig templates",
   "keywords": [
     "gruntplugin",

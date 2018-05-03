@@ -1,6 +1,8 @@
 # grunt-twig2html v1.0.0 [![Build Status](https://travis-ci.org/toptalo/grunt-twig2html.svg?branch=master)](https://travis-ci.org/toptalo/grunt-twig2html)
 
-> A static site compiler for grunt based on [twig templates](https://twig.symfony.com/)
+> A static site compiler for grunt based on [Twig.js](https://github.com/twigjs/twig.js/wiki)
+
+> Twig.js is a pure JavaScript implementation of the Twig PHP templating language (https://twig.symfony.com/)
 
 ## Getting Started
 This plugin requires Grunt `^1.0.1`
@@ -47,19 +49,19 @@ Path to JSON file with global context variables.
 Type: `Array`
 Default value: `[]`
 
-Can be an array of functions that extend TwigJS.
+Can be an array of functions that extend TwigJS with [custom tags](https://github.com/twigjs/twig.js/wiki/Extending-twig.js-With-Custom-Tags).
 
 #### options.functions
 Type: `Object`
 Default value: `{}`
 
-Object hash defining functions in TwigJS.
+Object hash defining [functions in TwigJS](https://github.com/twigjs/twig.js/wiki/Extending-twig.js#functions).
 
 #### options.filters
 Type: `Object`
 Default value: `{}`
 
-Object hash defining filters in TwigJS.
+Object hash defining [filters in TwigJS](https://github.com/twigjs/twig.js/wiki/Extending-twig.js#filters).
 
 #### options.context
 Type: `Object`

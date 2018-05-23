@@ -1,7 +1,9 @@
 # Release History
 
-## v1.0.1, 2018-05-03
+## v1.0.1, 2018-05-23
 * update README.md
+* update `twig` to 1.11.1
+* update `chalk` to ^2.4.1
 
 ## v1.0.0, 2018-04-11
 * drop node 4.x support

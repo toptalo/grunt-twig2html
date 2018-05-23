@@ -1,4 +1,4 @@
-# grunt-twig2html v1.0.0 [![Build Status](https://travis-ci.org/toptalo/grunt-twig2html.svg?branch=master)](https://travis-ci.org/toptalo/grunt-twig2html)
+# grunt-twig2html [![Build Status](https://travis-ci.org/toptalo/grunt-twig2html.svg?branch=master)](https://travis-ci.org/toptalo/grunt-twig2html)
 
 > A static site compiler for grunt based on [Twig.js](https://github.com/twigjs/twig.js/wiki)
 

@@ -1,5 +1,10 @@
 # Release History
 
+## v1.1.0, 2018-06-06
+* add node 10 to `travis.yml`
+* update `devDependencies`
+* remove `chalk`
+
 ## v1.0.1, 2018-05-23
 * update README.md
 * update `twig` to 1.11.1

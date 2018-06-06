@@ -10,7 +10,6 @@
 
 const Twig = require('twig');
 const extend = require('extend');
-const chalk = require('chalk');
 
 module.exports = (grunt) => {
     grunt.registerMultiTask('twig2html', 'Render twig templates to html files', function () {
@@ -95,7 +94,7 @@ module.exports = (grunt) => {
                 })).then((result) => {
                     let contents = result.join(options.separator);
                     grunt.file.write(file.dest, contents);
-                    grunt.log.ok(`File ${chalk.cyan(file.dest)} created.`);
+                    grunt.log.ok('File ' + (file.dest).cyan + ' created.');
                     resolveMain();
                 }).catch((error) => {
                     rejectMain(error);

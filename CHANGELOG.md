@@ -1,5 +1,8 @@
 # Release History
 
+## v1.2.0, 2018-07-03
+* update `twig` to 1.12.0
+
 ## v1.1.0, 2018-06-06
 * add node 10 to `travis.yml`
 * update `devDependencies`

@@ -1,5 +1,10 @@
 # Release History
 
+## v1.3.0, 2019-01-11
+* update `twig` to 1.13.0
+* update `extend` to 3.0.2
+* update `devDependencies`
+
 ## v1.2.0, 2018-07-03
 * update `twig` to 1.12.0
 

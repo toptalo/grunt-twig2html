@@ -1,8 +1,10 @@
-# grunt-twig2html [![Build Status](https://travis-ci.org/toptalo/grunt-twig2html.svg?branch=master)](https://travis-ci.org/toptalo/grunt-twig2html)
+[![Build Status](https://travis-ci.org/toptalo/grunt-twig2html.svg?branch=master)](https://travis-ci.org/toptalo/grunt-twig2html)
 
-> A static site compiler for grunt based on [Twig.js](https://github.com/twigjs/twig.js/wiki)
+# grunt-twig2html
 
-> Twig.js is a pure JavaScript implementation of the Twig PHP templating language (https://twig.symfony.com/)
+Grunt plugin that compile twig templates to html pages.
+
+Build upon [Twig.js](https://github.com/twigjs/twig.js), the JS port of the Twig templating language by John Roepke.
 
 ## Getting Started
 This plugin requires Grunt `^1.0.1`

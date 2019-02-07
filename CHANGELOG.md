@@ -1,5 +1,9 @@
 # Release History
 
+## v1.3.2, 2019-02-07
+* update `twig` to 1.13.2
+* update `README`
+
 ## v1.3.1, 2019-01-11
 * update `package-lock.json` to fix travis-ci
 

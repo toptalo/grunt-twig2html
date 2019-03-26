@@ -20,6 +20,7 @@ module.exports = (grunt) => {
             functions: {},
             filters: {},
             context: {},
+            namespaces: {},
             separator: '\n'
         });
 
@@ -83,7 +84,8 @@ module.exports = (grunt) => {
                             let output = Twig.twig({
                                 cache: false,
                                 async: false,
-                                path: filePath
+                                path: filePath,
+                                namespaces: options.namespaces
                             }).render(context);
 
                             resolveFile(output);

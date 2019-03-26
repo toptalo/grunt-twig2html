@@ -1,5 +1,9 @@
 # Release History
 
+## v1.4.0, 2019-03-26
+* add namespaces support
+* update `README`
+
 ## v1.3.2, 2019-02-07
 * update `twig` to 1.13.2
 * update `README`

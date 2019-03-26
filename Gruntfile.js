@@ -31,7 +31,10 @@ module.exports = function (grunt) {
         // Configuration to be run (and then tested).
         twig2html: {
             options: {
-                globals: './test/fixtures/globals.json'
+                globals: './test/fixtures/globals.json',
+                namespaces: {
+                    blocks: './test/fixtures/blocks'
+                }
             },
             index: {
                 options: {

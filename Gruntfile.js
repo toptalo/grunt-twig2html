@@ -107,7 +107,7 @@ module.exports = function (grunt) {
                         }
                     },
                     context: {
-                        name: 'Victor',
+                        name: 'Test',
                         phone: '+7 (999) 888-77-66',
                         year: 2017
                     }
